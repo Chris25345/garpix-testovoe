@@ -22,6 +22,11 @@ const booksReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       }
+    case actionTypesBooks.CREATE_BOOK_START:
+      return {
+        ...state,
+        error: null,
+      }
     case actionTypesBooks.DELETE_BOOK_START:
       return {
         ...state,

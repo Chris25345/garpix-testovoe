@@ -26,8 +26,9 @@ function App() {
         </Route>
 
         <Route exact path="/books" component={Books} />
+        <Route exact path="/books/create" component={AddBookForm} />
+        <Route exact path="/books/edit" component={AddBookForm} />
         <Route exact path="/books/:id" component={SingleBook} />
-        <Route exact path="/create" component={AddBookForm} />
 
         <Route exact path="/authors">
           authors

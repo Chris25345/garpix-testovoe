@@ -1,13 +1,16 @@
 import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import s from './AddBookForm.module.css';
 import useLocalStorage from '../../helpers/useLocalStorage';
+import actionTypesBooks from '../../redux/actionTypes/booksAT';
 
 const AddBookForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useLocalStorage('title', '');
-  const [authorName, setAuthorName] = useLocalStorage('authorName', '');
+  const [authorId, setAuthorId] = useLocalStorage('authorName', '');
   const [year, setYear] = useLocalStorage('year', '');
   const [cover, setCover] = useLocalStorage('cover', '');
 
@@ -15,11 +18,12 @@ const AddBookForm = () => {
     e.preventDefault();
     const clientData = {
       title: e.target.title.value,
-      authorName: e.target.authorName.value,
+      authorId: e.target.authorId.value,
       year: e.target.year.value,
       cover: e.target.cover.value,
     };
-    console.log(clientData);
+    dispatch({ type: actionTypesBooks.CREATE_BOOK_START, payload: clientData });
+
     localStorage.clear();
     history.push('/books');
   };
@@ -36,11 +40,10 @@ const AddBookForm = () => {
         </div>
         <div className={s.row}>
           <span>Автор</span>
-          <select required name='authorName' value={authorName} onChange={(e) => setAuthorName(e.target.value)}>
+          <select required name='authorId' value={authorId} onChange={(e) => setAuthorId(e.target.value)}>
             <option>Автор</option>
-            <option value="Эконом">Автор 1</option>
-            <option value="Комфорт">Автор 2</option>
-            <option value="Люкс">Автор 3</option>
+            <option value="1">Автор 1</option>
+            <option value="2">Автор 2</option>
           </select>
         </div>
         <div className={s.row}>

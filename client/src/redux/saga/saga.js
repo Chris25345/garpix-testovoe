@@ -43,9 +43,31 @@ function* deleteBook(action) {
   }
 }
 
+function* createBook(action) {
+  try {
+    const books = yield call(fetchData, {
+      url: 'http://localhost:5000/books/create',
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: action.payload.title,
+        AuthorId: action.payload.authorId,
+        year: action.payload.year,
+        cover: action.payload.cover,
+      })
+    });
+    yield put({ type: actionTypesBooks.INIT_BOOKS_SUCCESS, payload: books });
+  } catch (error) {
+    yield put({ type: actionTypesBooks.INIT_BOOKS_ERROR, payload: error });
+  }
+}
+
 function* watchActions() {
   yield takeEvery(actionTypesBooks.INIT_BOOKS_START, fetchBooks);
   yield takeEvery(actionTypesBooks.DELETE_BOOK_START, deleteBook);
+  yield takeEvery(actionTypesBooks.CREATE_BOOK_START, createBook);
 }
 
 export default watchActions;
