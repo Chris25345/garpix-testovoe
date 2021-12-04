@@ -1,8 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
 .books_main {
   display: flex;
   flex-direction: column;
+  align-content: center;
   margin: 20px;
   height: fit-content;
+  width: 100%;
 }
 .navbar {
   display: flex;
@@ -45,6 +51,7 @@ h3:last-child {
   width: 150px;
 }
 .status {
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,8 +64,11 @@ h3:last-child {
   color: #000000;
 }
 .open {
-  border: none;
+  text-decoration: none;
   background: #009bac;
+  color: white;
+}
+.open:hover {
   color: white;
 }
 .edit {
@@ -69,4 +79,12 @@ h3:last-child {
   background: linear-gradient(45deg, #2e387f, #DC143C);
   color: white;
 }
-
+.add_book {
+  display: flex;
+  justify-content: flex-end;
+}
+.add_book button {
+  background: linear-gradient(45deg, #2e387f, #3CB371);
+  color: white;
+  margin-right: 20px;
+}
