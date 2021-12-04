@@ -5,28 +5,28 @@ const Books = () => {
   const books = [
     { 
       id: 1,
-      bookName: 'Matilda',
+      title: 'Matilda',
       first_name: 'Roald',
       last_name: 'Dahl',
       created_at: '10/10/10'
     },
     { 
       id: 2,
-      bookName: 'Matilda',
+      title: 'Matilda',
       first_name: 'Roald',
       last_name: 'Dahl',
       created_at: '10/10/10'
     },
     { 
       id: 3,
-      bookName: 'Matilda',
+      title: 'Matilda',
       first_name: 'Roald',
       last_name: 'Dahl',
       created_at: '10/10/10'
     },
     { 
       id: 4,
-      bookName: 'Matilda',
+      title: 'Matilda',
       first_name: 'Roald',
       last_name: 'Dahl',
       created_at: '10/10/10'
@@ -47,7 +47,7 @@ const Books = () => {
 
       {books.map((el) => (
         <form className={s.book_info}>
-          <div>{el.bookName}</div>
+          <div>{el.title}</div>
           <div>{el.first_name}</div>
           <div>{el.last_name}</div>
           <div>{el.created_at}</div>
