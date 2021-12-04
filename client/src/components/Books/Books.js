@@ -18,7 +18,7 @@ const Books = () => {
     <div className={s.container}>
       <div className={s.books_main}>
         <div className={s.add_book}>
-          <button className={s.status}>Создать книгу</button>
+          <Link to="/create" className={`${s.add_book_button} ${s.status}`}>Создать книгу</Link>
         </div>
         <div className={s.navbar}>
           <h3>Название книги</h3>

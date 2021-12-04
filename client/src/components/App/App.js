@@ -6,6 +6,7 @@ import Books from '../Books/Books';
 import SingleBook from '../SingleBook/SingleBook';
 import booksAction from '../../redux/actionCreators/booksAC';
 import { useEffect } from 'react';
+import AddBookForm from '../AddBookForm/AddBookForm';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
         <Route exact path="/books" component={Books} />
         <Route exact path="/books/:id" component={SingleBook} />
+        <Route exact path="/create" component={AddBookForm} />
 
         <Route exact path="/authors">
           authors
