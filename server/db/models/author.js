@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Book}) {
-      this.hasOne(Book);
+    static associate({ Book }) {
+      this.hasOne(Book)
     }
   };
   Author.init({
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     last_name: {
       type: DataTypes.TEXT,
       allowNull: false,
-    },
+    }
   }, {
     sequelize,
     modelName: 'Author',

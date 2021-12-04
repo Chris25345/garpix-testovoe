@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import booksAction from '../../redux/actionCreators/booksAC';
 import s from './Books.module.css';
 
 const Books = () => {
+  const dispatch = useDispatch();
+  const book = useSelector(state => state.books.list);
+  console.log(book);
+  
+  useEffect(() => {
+    dispatch(booksAction.initBooks());
+  }, [dispatch]);
+
   const books = [
     { 
       id: 1,
@@ -46,7 +56,7 @@ const Books = () => {
       <br />
 
       {books.map((el) => (
-        <form className={s.book_info}>
+        <form className={s.book_info} key={el.id}>
           <div>{el.title}</div>
           <div>{el.first_name}</div>
           <div>{el.last_name}</div>

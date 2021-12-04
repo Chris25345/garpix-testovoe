@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Author}) {
+    static associate({ Author }) {
       this.belongsTo(Author)
     }
   };
@@ -18,16 +18,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    author_id: {
+    AuthorId: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
         model: 'Author',
-        key: 'id',
+        key: 'id'
       },
     },
     year: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     image: {
       type: DataTypes.TEXT,

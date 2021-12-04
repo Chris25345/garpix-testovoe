@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Books', [{
       title: 'Matilda',
-      author_id: '1',
+      AuthorId: '1',
       year: '2000',
       image: '',
       createdAt: new Date(),
@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       title: 'Fantastic Mr Fox',
-      author_id: '1',
+      AuthorId: '1',
       year: '2000',
       image: '',
       createdAt: new Date(),
@@ -20,7 +20,7 @@ module.exports = {
     },
     {
       title: 'Robot Of Silver',
-      author_id: '1',
+      AuthorId: '1',
       year: '2000',
       image: '',
       createdAt: new Date(),
@@ -28,7 +28,7 @@ module.exports = {
     },
     {
       title: 'Officer Of The Light',
-      author_id: '2',
+      AuthorId: '2',
       year: '2000',
       image: '',
       createdAt: new Date(),
@@ -36,7 +36,7 @@ module.exports = {
     },
     {
       title: 'Kings Of The Day',
-      author_id: '2',
+      AuthorId: '2',
       year: '2000',
       image: '',
       createdAt: new Date(),
@@ -44,7 +44,7 @@ module.exports = {
     },
     {
       title: 'Faction Of Perfection',
-      author_id: '2',
+      AuthorId: '2',
       year: '2000',
       image: '',
       createdAt: new Date(),

@@ -1,3 +1,6 @@
+import { takeEvery, call, put } from 'redux-saga/effects';
+import actionTypesBooks from '../actionTypes/booksAT';
+
 async function fetchData({
   url, method, headers, body
 }) {
@@ -11,8 +14,19 @@ async function fetchData({
   return data;
 }
 
-function* watchActions() {
+function* fetchBooks() {
+  try {
+    const books = yield call(fetchData, {
+      url: 'http://localhost:5000/books',
+    });
+    yield put({ type: actionTypesBooks.INIT_BOOKS_SUCCESS, payload: books });
+  } catch (error) {
+    yield put({ type: actionTypesBooks.INIT_BOOKS_ERROR, payload: error });
+  }
+}
 
+function* watchActions() {
+  yield takeEvery(actionTypesBooks.INIT_BOOKS_START, fetchBooks)
 }
 
 export default watchActions;

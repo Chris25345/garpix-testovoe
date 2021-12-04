@@ -2,7 +2,7 @@
   "development": {
     "username": "chris_test",
     "password": "Chris2003",
-    "database": "garpix",
+    "database": "garpix_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
