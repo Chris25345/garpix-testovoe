@@ -22,6 +22,22 @@ const booksReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       }
+    case actionTypesBooks.DELETE_BOOK_START:
+      return {
+        ...state,
+        error: null,
+      }
+    case actionTypesBooks.DELETE_BOOK_SUCCESS:
+      return {
+        ...state,
+        list: [...action.payload],
+      }
+
+    case actionTypesBooks.DELETE_BOOK_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      }
 
     default:
       return state;

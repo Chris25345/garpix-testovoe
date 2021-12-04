@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import booksAction from '../../redux/actionCreators/booksAC';
 
 const SingleBook = () => {
   const { id } = useParams();
@@ -17,4 +16,4 @@ const SingleBook = () => {
   )
 }
 
-export default SingleBook
+export default SingleBook;
