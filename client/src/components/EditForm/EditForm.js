@@ -1,28 +1,28 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
-import s from './AddBookForm.module.css';
-import useLocalStorage from '../../helpers/useLocalStorage';
 import actionTypesBooks from '../../redux/actionTypes/booksAT';
+import s from '../AddBookForm/AddBookForm.module.css';
 
-const AddBookForm = () => {
+const EditForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useLocalStorage('bookTitle', '');
-  const [authorId, setAuthorId] = useLocalStorage('Author', '');
-  const [year, setYear] = useLocalStorage('bookYear', '');
-  const [cover, setCover] = useLocalStorage('bookCover', '');
+  const { id } = useParams();
+  const books = useSelector(state => state.books.list);
+  const editBook = books.filter((el) => el.id === +id)[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const clientData = {
+      id: +id,
       title: e.target.title.value,
       authorId: e.target.authorId.value,
       year: e.target.year.value,
       cover: e.target.cover.value,
     };
-    dispatch({ type: actionTypesBooks.CREATE_BOOK_START, payload: clientData });
+    dispatch({ type: actionTypesBooks.EDIT_BOOK_START, payload: clientData });
 
     localStorage.clear();
     history.push('/books');
@@ -32,15 +32,15 @@ const AddBookForm = () => {
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.row}>
           <span>Название книги</span>
-          <input type="text" required name='title' placeholder='Название книги' value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input type="text" required name='title' defaultValue={editBook.title}/>
         </div>
         <div className={s.row}>
           <span>Первая публикация</span>
-          <input type="number" required name='year' placeholder='Первая публикация' value={year} onChange={(e) => setYear(e.target.value)} />
+          <input type="number" required name='year' defaultValue={editBook.year}/>
         </div>
         <div className={s.row}>
           <span>Автор</span>
-          <select required name='authorId' value={authorId} onChange={(e) => setAuthorId(e.target.value)}>
+          <select required name='authorId' defaultValue={editBook.AuthorId}>
             <option>Автор</option>
             <option value="1">Автор 1</option>
             <option value="2">Автор 2</option>
@@ -48,7 +48,7 @@ const AddBookForm = () => {
         </div>
         <div className={s.row}>
           <span>Обложка книги</span>
-          <input name='cover' placeholder="Ссылка" value={cover} onChange={(e) => setCover(e.target.value)}></input>
+          <input name='cover' placeholder="Ссылка" defaultValue={editBook.image}></input>
         </div>
         <div className={s.buttonContainer}>
           <button type='submit' className={s.submit}>Отправить</button>
@@ -58,4 +58,6 @@ const AddBookForm = () => {
   );
 };
 
-export default AddBookForm;
+export default EditForm;
+
+

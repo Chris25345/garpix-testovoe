@@ -8,6 +8,7 @@ const actionTypesBooks = {
   DELETE_BOOK_ERROR: 'DELETE_BOOK_ERROR',
 
   CREATE_BOOK_START: 'CREATE_BOOK_START',
+  EDIT_BOOK_START: 'EDIT_BOOK_START',
 }
 
 export default actionTypesBooks;

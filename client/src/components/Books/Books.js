@@ -38,7 +38,7 @@ const Books = () => {
             <div>{el.Author.last_name}</div>
             <div>{el.year}</div>
             <Link to={`/books/${el.id}`} className={`${s.open} ${s.status}`}>Посмотреть</Link>
-            <button className={`${s.edit} ${s.status}`}>Редактировать</button>
+            <Link to={`/books/edit/${el.id}`} className={`${s.edit} ${s.status}`}>Редактировать</Link>
             <button className={`${s.delete} ${s.status}`} onClick={() => deleteBook(el.id)}>Удалить</button>
           </div>
         ))}

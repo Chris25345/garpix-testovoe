@@ -76,6 +76,9 @@ h3:last-child {
   background: #2e387f;
   color: white;
 }
+.edit:hover {
+  color: white;
+}
 .delete {
   background: linear-gradient(45deg, #2e387f, #DC143C);
   color: white;

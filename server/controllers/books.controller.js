@@ -33,13 +33,13 @@ const deleteBook = async (req, res) => {
 }
 
 const createBook = async (req, res) => {
-  const { title, AuthorId, year, cover } = req.body;
+  const { title, AuthorId, year, image } = req.body;
   try {
     await Book.create({
       title,
       AuthorId,
       year,
-      cover
+      image,
     });
     const books = await Book.findAll({
       include: Author,
@@ -52,4 +52,25 @@ const createBook = async (req, res) => {
   }
 }
 
-module.exports = { allBooks, deleteBook, createBook };
+const editBook = async (req, res) => {
+  const { id, title, AuthorId, year, image } = req.body;
+  try {
+    await Book.update(
+      { title, AuthorId, year, image },
+      { 
+        where: { id },
+        returning: true,
+      },
+    );
+  const books = await Book.findAll({
+    include: Author,
+    order: [['updatedAt', 'DESC']],
+  });
+  res.status(200).json(books)
+} catch (error) {
+  console.log(error);
+  res.status(404).json({ error: error.message })
+}
+}
+
+module.exports = { allBooks, deleteBook, createBook, editBook };
