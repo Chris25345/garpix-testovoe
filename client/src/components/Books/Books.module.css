@@ -1,0 +1,72 @@
+.books_main {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  height: fit-content;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+h3 {
+  margin-left: 30px;
+  padding: 15px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid black;
+}
+
+h3:first-child {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+h3:last-child {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.book_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid rgb(146, 146, 146);
+  padding: 10px;
+}
+
+.book_info:nth-child(even) {
+  background-color: rgb(247, 245, 245);
+}
+
+.book_info div {
+  width: 150px;
+}
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 14px;
+  text-align: center;
+  padding: 0 10px;
+  width: fit-content;
+  height: 40px;
+  color: #000000;
+}
+.open {
+  border: none;
+  background: #009bac;
+  color: white;
+}
+.edit {
+  background: #2e387f;
+  color: white;
+}
+.delete {
+  background: linear-gradient(45deg, #2e387f, #DC143C);
+  color: white;
+}
+
