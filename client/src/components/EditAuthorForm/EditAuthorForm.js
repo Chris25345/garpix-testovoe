@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
-import actionTypesBooks from '../../redux/actionTypes/booksAT';
+import actionsTypesAuthors from '../../redux/actionTypes/authorsAT';
 import s from '../AddBookForm/AddBookForm.module.css';
 
 const EditAuthorForm = () => {
@@ -10,45 +10,31 @@ const EditAuthorForm = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-  const books = useSelector(state => state.books.list);
-  const editBook = books.filter((el) => el.id === +id)[0];
+  const authors = useSelector(state => state.authors.list);
+  const editAuthor = authors.filter((el) => el.id === +id)[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const clientData = {
       id: +id,
-      title: e.target.title.value,
-      authorId: e.target.authorId.value,
-      year: e.target.year.value,
-      cover: e.target.cover.value,
+      first_name: e.target.firstName.value,
+      last_name: e.target.lastName.value,
     };
-    dispatch({ type: actionTypesBooks.EDIT_BOOK_START, payload: clientData });
+    dispatch({ type: actionsTypesAuthors.EDIT_AUTHOR_START, payload: clientData });
 
     localStorage.clear();
-    history.push('/books');
+    history.push('/authors');
   };
   return (
     <div className={s.container}>
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.row}>
-          <span>Название книги</span>
-          <input type="text" required name='title' defaultValue={editBook.title}/>
+          <span>Фамилия автора</span>
+          <input type="text" required name='firstName' defaultValue={editAuthor.first_name}/>
         </div>
         <div className={s.row}>
-          <span>Первая публикация</span>
-          <input type="number" required name='year' defaultValue={editBook.year}/>
-        </div>
-        <div className={s.row}>
-          <span>Автор</span>
-          <select required name='authorId' defaultValue={editBook.AuthorId}>
-            <option>Автор</option>
-            <option value="1">Автор 1</option>
-            <option value="2">Автор 2</option>
-          </select>
-        </div>
-        <div className={s.row}>
-          <span>Обложка книги</span>
-          <input name='cover' placeholder="Ссылка" defaultValue={editBook.image}></input>
+          <span>Имя автора</span>
+          <input type="text" required name='lastName' defaultValue={editAuthor.last_name}/>
         </div>
         <div className={s.buttonContainer}>
           <button type='submit' className={s.submit}>Отправить</button>

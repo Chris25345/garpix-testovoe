@@ -11,6 +11,7 @@ import Authors from '../Authors/Authors';
 import authorsAction from '../../redux/actionCreators/authorsAC';
 import SingleAuthor from '../SingleAuthor/SingleAuthor';
 import AddAuthorForm from '../AddAuthorForm/AddAuthorForm';
+import EditAuthorForm from '../EditAuthorForm/EditAuthorForm';
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
         <Route exact path="/books/:id" component={SingleBook} />
         <Route exact path="/authors" component={Authors} />
         <Route exact path="/authors/create" component={AddAuthorForm} />
-        <Route exact path="/authors/edit/:id" component={EditForm} />
+        <Route exact path="/authors/edit/:id" component={EditAuthorForm} />
         <Route exact path="/authors/:id" component={SingleAuthor} />
 
       </Switch>

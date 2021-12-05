@@ -5,6 +5,7 @@ const actionsTypesAuthors = {
 
   DELETE_AUTHOR_START: 'DELETE_AUTHOR_START',
   CREATE_AUTHOR_START: 'CREATE_AUTHOR_START',
+  EDIT_AUTHOR_START: 'EDIT_AUTHOR_START',
 }
 
 export default actionsTypesAuthors;

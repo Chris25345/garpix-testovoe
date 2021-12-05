@@ -27,6 +27,16 @@ const authorsReducer = (state = initialState, action) => {
         ...state,
         error: null,
       }
+    case actionsTypesAuthors.CREATE_AUTHOR_START:
+      return {
+        ...state,
+        error: null,
+      }
+    case actionsTypesAuthors.EDIT_AUTHOR_START:
+      return {
+        ...state,
+        error: null,
+      }
 
     default:
       return state

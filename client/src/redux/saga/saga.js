@@ -131,6 +131,25 @@ function* createAuthor(action) {
     yield put({ type: actionsTypesAuthors.INIT_AUTHORS_ERROR, payload: error });
   }
 }
+function* editAuthor(action) {
+  try {
+    const authors = yield call(fetchData, {
+      url: 'http://localhost:5000/authors/edit/:id',
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: action.payload.id,
+        first_name: action.payload.first_name,
+        last_name: action.payload.last_name,
+      })
+    });
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_SUCCESS, payload: authors });
+  } catch (error) {
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_ERROR, payload: error});
+  }
+}
 
 function* watchActions() {
   yield takeEvery(actionTypesBooks.INIT_BOOKS_START, fetchBooks);
@@ -141,6 +160,7 @@ function* watchActions() {
   yield takeEvery(actionsTypesAuthors.INIT_AUTHORS_START, fetchAuthors);
   yield takeEvery(actionsTypesAuthors.DELETE_AUTHOR_START, deleteAuthor);
   yield takeEvery(actionsTypesAuthors.CREATE_AUTHOR_START, createAuthor);
+  yield takeEvery(actionsTypesAuthors.EDIT_AUTHOR_START, editAuthor);
 }
 
 export default watchActions;
