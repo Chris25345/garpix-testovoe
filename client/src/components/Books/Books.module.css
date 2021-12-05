@@ -95,3 +95,41 @@ h3:last-child {
 .add_book_button:hover {
   color: white;
 }
+
+/* @media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    overflow-x: scroll;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+  h3 {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+  }
+  h3:first-child {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  h3:last-child {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .add_book_button {
+    font-size: 10px;
+  }
+  .status {
+    height: 30px;
+    font-size: 10px;
+  }
+  .book_container {
+    overflow-x: scroll;
+    width: 90%;
+  }
+}  */

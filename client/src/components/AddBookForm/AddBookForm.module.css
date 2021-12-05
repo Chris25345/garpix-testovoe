@@ -33,6 +33,7 @@
 .row select {
   border-radius: 14px;
   padding: 7px;
+  background-color: white;
 }
 
 .submit {
