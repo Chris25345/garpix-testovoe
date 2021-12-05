@@ -42,7 +42,6 @@ const AddBookForm = () => {
         <div className={s.row}>
           <span>Автор</span>
           <select required name='authorId' value={authorId} onChange={(e) => setAuthorId(e.target.value)}>
-            <option>Автор</option>
             {authors.map((el) => (
               <option value={`${el.id}`}>{`${el.first_name} ${el.last_name}`}</option>
             ))}

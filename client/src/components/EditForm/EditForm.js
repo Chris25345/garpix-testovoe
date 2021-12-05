@@ -42,7 +42,6 @@ const EditForm = () => {
         <div className={s.row}>
           <span>Автор</span>
           <select required name='authorId' defaultValue={editBook.AuthorId}>
-            <option>Автор</option>
             {authors.map((el) => (
               <option value={`${el.id}`}>{`${el.first_name} ${el.last_name}`}</option>
             ))}
