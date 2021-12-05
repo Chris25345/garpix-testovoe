@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import s from './AddBookForm.module.css';
@@ -8,6 +8,8 @@ import actionTypesBooks from '../../redux/actionTypes/booksAT';
 const AddBookForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [invalid, setInvalid] = useState(false);
+  const [invalidDate, setInvalidDate] = useState(false);
   const authors = useSelector(state => state.authors.list);
 
   const [title, setTitle] = useLocalStorage('bookTitle', '');
@@ -17,6 +19,20 @@ const AddBookForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (e.target.title.value.length < 3) {
+      setInvalid(true);
+      setTimeout(() => {
+        setInvalid(false);
+      }, 4500)
+      return;
+    }
+    if (e.target.year.value.length > 4) {
+      setInvalidDate(true);
+      setTimeout(() => {
+        setInvalidDate(false);
+      }, 4500)
+      return;
+    }
     const clientData = {
       title: e.target.title.value,
       authorId: e.target.authorId.value,
@@ -31,6 +47,18 @@ const AddBookForm = () => {
   return (
     <div className={s.container}>
       <form className={s.form} onSubmit={handleSubmit}>
+        {!invalid
+          ? null
+          : <div className="alert alert-warning" role="alert">
+            <strong>Минимальная длина названия - 3 символа</strong>
+          </div>
+        }
+        {!invalidDate
+          ? null
+          : <div className="alert alert-warning" role="alert">
+            <strong>Дата не может превышать 4 символа </strong>
+          </div>
+        }
         <div className={s.row}>
           <span>Название книги</span>
           <input type="text" required name='title' placeholder='Название книги' value={title} onChange={(e) => setTitle(e.target.value)} />

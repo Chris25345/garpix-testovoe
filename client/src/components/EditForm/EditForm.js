@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
@@ -8,6 +8,8 @@ import s from '../AddBookForm/AddBookForm.module.css';
 const EditForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [invalid, setInvalid] = useState(false);
+  const [invalidDate, setInvalidDate] = useState(false);
 
   const { id } = useParams();
   const books = useSelector(state => state.books.list);
@@ -16,6 +18,20 @@ const EditForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (e.target.title.value.length < 3) {
+      setInvalid(true);
+      setTimeout(() => {
+        setInvalid(false);
+      }, 4500)
+      return;
+    }
+    if (e.target.year.value.length > 4) {
+      setInvalidDate(true);
+      setTimeout(() => {
+        setInvalidDate(false);
+      }, 4500)
+      return;
+    }
     const clientData = {
       id: +id,
       title: e.target.title.value,
@@ -31,6 +47,18 @@ const EditForm = () => {
   return (
     <div className={s.container}>
       <form className={s.form} onSubmit={handleSubmit}>
+        {!invalid
+          ? null
+          : <div class="alert alert-warning" role="alert">
+            <strong>Минимальная длина названия - 3 символа</strong>
+          </div>
+        }
+        {!invalidDate
+          ? null
+          : <div className="alert alert-warning" role="alert">
+            <strong>Дата не может превышать 4 символа </strong>
+          </div>
+        }
         <div className={s.row}>
           <span>Название книги</span>
           <input type="text" required name='title' defaultValue={editBook.title} />
