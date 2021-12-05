@@ -32,16 +32,10 @@ const booksReducer = (state = initialState, action) => {
         ...state,
         error: null,
       }
-    case actionTypesBooks.DELETE_BOOK_SUCCESS:
+    case actionTypesBooks.EDIT_BOOK_START:
       return {
         ...state,
-        list: [...action.payload],
-      }
-
-    case actionTypesBooks.DELETE_BOOK_ERROR:
-      return {
-        ...state,
-        error: action.payload,
+        error: null,
       }
 
     default:

@@ -11,6 +11,7 @@ const EditForm = () => {
 
   const { id } = useParams();
   const books = useSelector(state => state.books.list);
+  const authors = useSelector(state => state.authors.list);
   const editBook = books.filter((el) => el.id === +id)[0];
 
   const handleSubmit = (e) => {
@@ -32,18 +33,19 @@ const EditForm = () => {
       <form className={s.form} onSubmit={handleSubmit}>
         <div className={s.row}>
           <span>Название книги</span>
-          <input type="text" required name='title' defaultValue={editBook.title}/>
+          <input type="text" required name='title' defaultValue={editBook.title} />
         </div>
         <div className={s.row}>
           <span>Первая публикация</span>
-          <input type="number" required name='year' defaultValue={editBook.year}/>
+          <input type="number" required name='year' defaultValue={editBook.year} />
         </div>
         <div className={s.row}>
           <span>Автор</span>
           <select required name='authorId' defaultValue={editBook.AuthorId}>
             <option>Автор</option>
-            <option value="1">Автор 1</option>
-            <option value="2">Автор 2</option>
+            {authors.map((el) => (
+              <option value={`${el.id}`}>{`${el.first_name} ${el.last_name}`}</option>
+            ))}
           </select>
         </div>
         <div className={s.row}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import s from './AddBookForm.module.css';
 import useLocalStorage from '../../helpers/useLocalStorage';
@@ -8,6 +8,7 @@ import actionTypesBooks from '../../redux/actionTypes/booksAT';
 const AddBookForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const authors = useSelector(state => state.authors.list);
 
   const [title, setTitle] = useLocalStorage('bookTitle', '');
   const [authorId, setAuthorId] = useLocalStorage('Author', '');
@@ -42,8 +43,9 @@ const AddBookForm = () => {
           <span>Автор</span>
           <select required name='authorId' value={authorId} onChange={(e) => setAuthorId(e.target.value)}>
             <option>Автор</option>
-            <option value="1">Автор 1</option>
-            <option value="2">Автор 2</option>
+            {authors.map((el) => (
+              <option value={`${el.id}`}>{`${el.first_name} ${el.last_name}`}</option>
+            ))}
           </select>
         </div>
         <div className={s.row}>
