@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
@@ -8,6 +7,10 @@ import booksAction from '../../redux/actionCreators/booksAC';
 import { useEffect } from 'react';
 import AddBookForm from '../AddBookForm/AddBookForm';
 import EditForm from '../EditForm/EditForm';
+import Authors from '../Authors/Authors';
+import authorsAction from '../../redux/actionCreators/authorsAC';
+import SingleAuthor from '../SingleAuthor/SingleAuthor';
+import AddAuthorForm from '../AddAuthorForm/AddAuthorForm';
 
 
 function App() {
@@ -15,6 +18,7 @@ function App() {
 
   useEffect(() => {
     dispatch(booksAction.initBooks());
+    dispatch(authorsAction.initAuthors());
   }, [dispatch]);
 
   return (
@@ -30,10 +34,11 @@ function App() {
         <Route exact path="/books/create" component={AddBookForm} />
         <Route exact path="/books/edit/:id" component={EditForm} />
         <Route exact path="/books/:id" component={SingleBook} />
+        <Route exact path="/authors" component={Authors} />
+        <Route exact path="/authors/create" component={AddAuthorForm} />
+        <Route exact path="/authors/edit/:id" component={EditForm} />
+        <Route exact path="/authors/:id" component={SingleAuthor} />
 
-        <Route exact path="/authors">
-          authors
-        </Route>
       </Switch>
     </BrowserRouter>
   );

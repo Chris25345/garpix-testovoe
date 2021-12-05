@@ -1,4 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
+import actionsTypesAuthors from '../actionTypes/authorsAT';
 import actionTypesBooks from '../actionTypes/booksAT';
 
 async function fetchData({
@@ -85,11 +86,61 @@ function* editBook(action) {
   }
 }
 
+function* fetchAuthors() {
+  try {
+    const authors = yield call(fetchData, {
+      url: 'http://localhost:5000/authors',
+    });
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_SUCCESS, payload: authors });
+  } catch (error) {
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_ERROR, payload: error });
+  }
+}
+function* deleteAuthor(action) {
+  try {
+    const authors = yield call(fetchData, {
+      url: 'http://localhost:5000/authors/:id',
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: action.payload,
+      })
+    });
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_SUCCESS, payload: authors });
+  } catch (error) {
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_ERROR, payload: error });
+  }
+}
+function* createAuthor(action) {
+  try {
+    const authors = yield call(fetchData, {
+      url: 'http://localhost:5000/authors/create',
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        first_name: action.payload.first_name,
+        last_name: action.payload.last_name,
+      })
+    });
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_SUCCESS, payload: authors });
+  } catch (error) {
+    yield put({ type: actionsTypesAuthors.INIT_AUTHORS_ERROR, payload: error });
+  }
+}
+
 function* watchActions() {
   yield takeEvery(actionTypesBooks.INIT_BOOKS_START, fetchBooks);
   yield takeEvery(actionTypesBooks.DELETE_BOOK_START, deleteBook);
   yield takeEvery(actionTypesBooks.CREATE_BOOK_START, createBook);
   yield takeEvery(actionTypesBooks.EDIT_BOOK_START, editBook);
+
+  yield takeEvery(actionsTypesAuthors.INIT_AUTHORS_START, fetchAuthors);
+  yield takeEvery(actionsTypesAuthors.DELETE_AUTHOR_START, deleteAuthor);
+  yield takeEvery(actionsTypesAuthors.CREATE_AUTHOR_START, createAuthor);
 }
 
 export default watchActions;
